@@ -1,0 +1,137 @@
+---
+title: "Lab 12"
+output: html_document
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE,  
+                      warning = FALSE, message = FALSE, 
+                      fig.align = "center",
+                      R.options = list(max.print=100))
+
+# Edit the file starting below
+```
+
+### Enter the names of the group members here:
+
+**This assignment is due by the end of the day. Only one student in the group submits a pdf file on Gradescope.**
+
+*For all questions, include the R commands/functions that you used to find your answer (show R chunk). Answers without supporting code will not receive credit. Write full sentences to describe your findings.*
+
+For this lab you will need to install the `MatchIt` package from CRAN. Run `install.packages("MatchIt")` in the console before you do this Lab.
+
+Let's load the packages we'll be using in this Lab.
+
+```{r}
+library(tidyverse)
+library(MatchIt)
+```
+
+## Dataset
+
+The dataset comes from a large-scale study of a labor force training program (the National Supported Work Demonstration) on the the income of participants after receiving the training. The goal is to compare the income of people who receved the training to the income of people who did not receive training.
+
+The data are included in the `MatchIt` package and we can load the dataset here.
+
+```{r}
+## Load the data into R
+data(lalonde)
+dat <- as_tibble(lalonde)
+dat %>% 
+    glimpse()
+```
+
+Each row in the dataset represents the data for an individual who did or did not participate in the training program.
+
+------------------------------------------------------------------------
+
+
+## Question 1 (4 pts)
+
+Let's compare the variables in the dataset between the treatment and control groups. The `treat` variable indicates whether a person got training (`treat = 1`) or did not (`treat = 0`). Compare the mean age, education, marital status, and high school degree status between treatment groups. Which variables seem to have the largest difference between the two groups?
+
+```{r}
+# your code goes below (make sure to edit comment)
+```
+
+
+**Your answer goes here. Write sentences in bold.**
+
+
+
+## Question 2 (4 pts)
+
+The `race` variable indicates the self-reported race of the individual as `black`, `hispan`, or `white`. Using `dplyr` functions, Compare the proportions of each race category between the two treatment groups. Are there any differences in the proportions between the two groups?
+
+```{r}
+# your code goes below (make sure to edit comment)
+```
+
+
+**Your answer goes here. Write sentences in bold.**
+
+
+## Question 3 (3 pts)
+
+In order to estimate the effect of the training program in income we need to fit a propensity score model and create a matched dataset. We can use the `matchit` function in the `MatchIt` package to do that.
+
+Use the `matchit` function to fit a propensity score model using the `treat` variable as the outcome and the `age`, `educ`, `race`, `married`, and `nodegree` variables as predictors. (Note: Use the default settings for the `matchit` function). 
+
+How many observations are in the matched dataset?
+
+```{r}
+# your code goes below (make sure to edit comment)
+```
+
+**Your answer goes here. Write sentences in bold.**
+
+
+## Question 4 (3 pts)
+
+Make a plot comparing the standardized means of the variables between the two treatment groups in the matched data and the original data (see the lecture notes for how to do this).
+
+```{r}
+# your code goes below (make sure to edit comment)
+```
+
+Has their been any improvement in the group differences between the variables? In other words, are the standardized differences between the group means smaller for each variable?
+
+
+**Your answer goes here. Write sentences in bold.**
+
+
+## Question 5 (4 pts)
+
+Create the matched dataset using `match.data()`.
+
+```{r}
+dat_matched <- match.data(pfit)
+```
+
+
+Run a linear regression using outcome `re78` (income after the training program) and the treatment variable `treat` using the matched dataset. What is the effect of the training program on income in these participants? Given what you saw in the previous question, would you trust the result of this analysis?
+
+
+```{r}
+# your code goes below (make sure to edit comment)
+```
+
+**Your answer goes here. Write sentences in bold.**
+
+
+
+### Formatting: (2 pts)
+
+Comment your code, write full sentences, and knit your file!
+
+
+
+
+
+
+
+
+
+
+
+
