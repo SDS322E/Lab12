@@ -122,7 +122,7 @@ Run a linear regression using outcome `re78` (income after the training program)
 
 ### Formatting: (2 pts)
 
-Comment your code, write full sentences, and knit your file!
+Comment your code, write full sentences, knit your file, and select all appropriate pages in Gradescope for each question!
 
 
 
