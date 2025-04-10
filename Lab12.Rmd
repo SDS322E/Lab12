@@ -37,7 +37,7 @@ The data are included in the `MatchIt` package and we can load the dataset here.
 ## Load the data into R
 data(lalonde)
 dat <- as_tibble(lalonde)
-dat %>% 
+dat |> 
     glimpse()
 ```
 
